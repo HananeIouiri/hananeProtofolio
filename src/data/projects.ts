@@ -110,4 +110,80 @@ export const projects: Project[] = [
     github: "https://github.com/HananeIouiri/Digital-Banking-App-Backend",
     category: "Software Engineering",
   },
+  {
+    slug: "clearpath",
+    name: "ClearPath",
+    tagline: "Real-time computer vision accessibility aid for visually impaired navigation",
+    problem:
+      "Visually impaired pedestrians need real-time awareness of obstacles and hazards — crosswalks, potholes, fire hydrants — that standard object-detection datasets don't cover.",
+    solution:
+      "A YOLOv8-based real-time detection system trained on a custom-labeled dataset of 25 everyday pedestrian objects, estimating distance through pixel-width and focal-length calibration and announcing obstacles via text-to-speech.",
+    features: [
+      "Real-time webcam object detection with YOLOv8s",
+      "Custom-labeled dataset of 25 pedestrian-relevant object classes (crosswalks, potholes, traffic lights, fire hydrants, etc.)",
+      "Distance estimation via pixel-width and focal-length calibration",
+      "Audio feedback through text-to-speech announcements",
+      "Model trained for 100 epochs at 640×640 resolution with an 80/20 train-validation split",
+    ],
+    contribution: "Built collaboratively with a teammate, focused on the detection and distance-estimation pipeline.",
+    tech: ["YOLOv8", "OpenCV", "Python", "Jupyter", "LabelImg"],
+    github: "https://github.com/HananeIouiri/clearPath",
+    category: "AI",
+  },
+  {
+    slug: "ml-algorithms-from-scratch",
+    name: "ML Algorithms From Scratch",
+    tagline: "Classical regression algorithms rebuilt and studied from first principles",
+    problem:
+      "Using scikit-learn effectively means understanding what it abstracts away — the math and mechanics behind the models it fits in one line.",
+    solution:
+      "A set of notebooks implementing and comparing simple linear, multiple linear, and polynomial regression on an advertising dataset, including manual train/test splitting and feature normalization alongside scikit-learn's StandardScaler.",
+    features: [
+      "Simple and multiple linear regression on the Advertising dataset",
+      "Polynomial regression implementation",
+      "Manual train/test data splitting",
+      "Feature normalization, both manual and via scikit-learn's StandardScaler",
+    ],
+    contribution: "Sole developer.",
+    tech: ["Python", "NumPy", "Pandas", "scikit-learn", "Jupyter"],
+    github: "https://github.com/HananeIouiri/ML-algorithms-from-scratch",
+    category: "AI",
+  },
+  {
+    slug: "breast-cancer-classification",
+    name: "Breast Cancer Classification",
+    tagline: "Exploratory ML classification notebook on the Wisconsin breast cancer dataset",
+    problem:
+      "Classifying tumors as malignant or benign from diagnostic measurements is a classic benchmark for validating a full supervised-learning workflow, from raw data to a trained classifier.",
+    solution:
+      "An end-to-end notebook covering data import, exploratory analysis, preprocessing, and classification model implementation with scikit-learn on the 569-sample Wisconsin breast cancer dataset.",
+    features: [
+      "Exploratory analysis of diagnosis distribution and cell-nucleus features with Seaborn and Plotly",
+      "Data preprocessing pipeline",
+      "Classification model implementation with scikit-learn",
+    ],
+    contribution: "Sole developer.",
+    tech: ["Python", "Pandas", "NumPy", "Seaborn", "Plotly", "scikit-learn"],
+    github: "https://github.com/HananeIouiri/Breast-Cancer-classification",
+    category: "AI",
+  },
+  {
+    slug: "quiz-game-android",
+    name: "Quiz Game — Android",
+    tagline: "Native Android trivia app with categories, difficulty levels, and a live leaderboard",
+    problem:
+      "A self-contained mobile project to practice native Android development end-to-end — UI, user accounts, and a cloud backend — outside the data/web stack.",
+    solution:
+      "A Java Android app with category and difficulty selection feeding a unified quiz engine, backed by Firebase for user registration, authentication, and a persistent leaderboard.",
+    features: [
+      "Category and difficulty selection screens",
+      "Unified quiz engine handling questions across categories",
+      "User registration and progress tracking",
+      "Firebase Realtime Database leaderboard with Firebase Authentication",
+    ],
+    contribution: "Sole developer.",
+    tech: ["Java", "Android SDK", "Firebase Realtime Database", "Firebase Auth", "Glide"],
+    github: "https://github.com/HananeIouiri/Quiz_Game_Android",
+    category: "Software Engineering",
+  },
 ];
