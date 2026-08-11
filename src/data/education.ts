@@ -30,8 +30,8 @@ export interface Certification {
 
 export const certifications: Certification[] = [
   { name: "Data Analytics Essentials", issuer: "Cisco" },
+  { name: "Scrum Fundamentals", issuer: "SCRUMstudy" },
   { name: "Machine Learning Specialization", issuer: "Coursera" },
-  { name: "Introduction to MongoDB", issuer: "MongoDB" },
   { name: "Cyber Threat Management", issuer: "Cisco" },
   { name: "Introduction to the Threat Landscape 3.0", issuer: "Fortinet" },
   { name: "Networking Essentials", issuer: "Cisco" },
