@@ -63,8 +63,10 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5 }}
-            action={mailtoHref}
-            method="get"
+            onSubmit={(e) => {
+              e.preventDefault();
+              window.location.href = mailtoHref;
+            }}
             className="rounded-2xl border border-border bg-surface p-6 sm:p-7 space-y-4"
           >
             <div className="grid sm:grid-cols-2 gap-4">
@@ -72,6 +74,8 @@ export function Contact() {
                 <label htmlFor="name" className="text-xs font-mono text-muted">Name</label>
                 <input
                   id="name"
+                  name="name"
+                  autoComplete="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="mt-1.5 w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none focus:border-accent transition-colors"
@@ -82,7 +86,9 @@ export function Contact() {
                 <label htmlFor="email" className="text-xs font-mono text-muted">Email</label>
                 <input
                   id="email"
+                  name="email"
                   type="email"
+                  autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="mt-1.5 w-full rounded-lg border border-border bg-surface-2 px-3.5 py-2.5 text-sm outline-none focus:border-accent transition-colors"
@@ -94,6 +100,7 @@ export function Contact() {
               <label htmlFor="message" className="text-xs font-mono text-muted">Message</label>
               <textarea
                 id="message"
+                name="message"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 rows={5}
