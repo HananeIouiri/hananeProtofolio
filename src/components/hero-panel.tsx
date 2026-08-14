@@ -1,10 +1,75 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
-const bars = [42, 68, 55, 81, 60, 74, 47, 88, 63, 70];
+const codeLines = [
+  "const hanane = {",
+  '  role: "Data, AI & BI Engineer",',
+  '  stack: ["Python", "SQL", "Power BI", "RAG"],',
+  '  currently: "Scalian × Alstom",',
+  '  status: "open to work",',
+  "};",
+  "",
+  "console.log(`Hi, I'm ${hanane.role}`);",
+];
+
+const TOKEN_REGEX =
+  /(".*?"|'.*?'|`.*?`)|\b(const|console|log)\b|([A-Za-z_$][\w$]*)(?=\s*:)|([{}[\]():,])/g;
+
+function highlightLine(line: string) {
+  const tokens: { text: string; cls: string }[] = [];
+  let lastIndex = 0;
+  let m: RegExpExecArray | null;
+  TOKEN_REGEX.lastIndex = 0;
+  while ((m = TOKEN_REGEX.exec(line))) {
+    if (m.index > lastIndex) {
+      tokens.push({ text: line.slice(lastIndex, m.index), cls: "text-foreground/80" });
+    }
+    if (m[1]) tokens.push({ text: m[1], cls: "text-ok" });
+    else if (m[2]) tokens.push({ text: m[2], cls: "text-accent" });
+    else if (m[3]) tokens.push({ text: m[3], cls: "text-foreground" });
+    else if (m[4]) tokens.push({ text: m[4], cls: "text-muted" });
+    lastIndex = TOKEN_REGEX.lastIndex;
+  }
+  if (lastIndex < line.length) {
+    tokens.push({ text: line.slice(lastIndex), cls: "text-foreground/80" });
+  }
+  return tokens.map((t, i) => (
+    <span key={i} className={t.cls}>
+      {t.text}
+    </span>
+  ));
+}
 
 export function HeroPanel() {
+  const [lineIndex, setLineIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+
+  useEffect(() => {
+    const currentLine = codeLines[lineIndex] ?? "";
+
+    if (lineIndex >= codeLines.length) {
+      const resetTimer = setTimeout(() => {
+        setLineIndex(0);
+        setCharIndex(0);
+      }, 2200);
+      return () => clearTimeout(resetTimer);
+    }
+
+    if (charIndex < currentLine.length) {
+      const typeTimer = setTimeout(() => setCharIndex((c) => c + 1), 24 + Math.random() * 22);
+      return () => clearTimeout(typeTimer);
+    }
+
+    const lineTimer = setTimeout(() => {
+      setLineIndex((l) => l + 1);
+      setCharIndex(0);
+    }, 220);
+    return () => clearTimeout(lineTimer);
+  }, [lineIndex, charIndex]);
+
+  const isDone = lineIndex >= codeLines.length;
+
   return (
     <div className="relative">
       <div className="absolute -inset-6 rounded-[2rem] bg-accent/10 blur-2xl" aria-hidden />
@@ -15,48 +80,20 @@ export function HeroPanel() {
             <span className="h-2.5 w-2.5 rounded-full bg-warn/70" />
             <span className="h-2.5 w-2.5 rounded-full bg-ok/70" />
           </div>
-          <span className="font-mono text-[11px] text-muted">campaign_health.dashboard</span>
+          <span className="font-mono text-[11px] text-muted">hello.ts</span>
         </div>
 
-        <div className="p-5 space-y-5">
-          <div className="grid grid-cols-3 gap-3">
-            {[
-              { label: "OK rate", value: "94.2%", tone: "text-ok" },
-              { label: "Active alerts", value: "3", tone: "text-warn" },
-              { label: "Runs", value: "184K", tone: "text-foreground" },
-            ].map((stat) => (
-              <div key={stat.label} className="rounded-xl bg-surface-2 p-3">
-                <p className="text-[11px] text-muted mb-1">{stat.label}</p>
-                <p className={`font-mono text-lg font-semibold ${stat.tone}`}>{stat.value}</p>
+        <div className="p-6 font-mono text-[13px] sm:text-sm leading-relaxed">
+          {codeLines.map((line, i) => {
+            const isCurrent = i === lineIndex && !isDone;
+            const text = i < lineIndex || isDone ? line : isCurrent ? line.slice(0, charIndex) : "";
+            return (
+              <div key={i} className="whitespace-pre">
+                {text ? highlightLine(text) : " "}
+                {isCurrent ? <span className="inline-block w-[7px] h-[1em] -mb-0.5 bg-accent animate-pulse" /> : null}
               </div>
-            ))}
-          </div>
-
-          <div className="rounded-xl bg-surface-2 p-4">
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-[11px] text-muted">OK rate — last 10 runs</p>
-              <span className="font-mono text-[10px] text-ok">▲ trending up</span>
-            </div>
-            <div className="flex items-end gap-1.5 h-20">
-              {bars.map((h, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ height: 0 }}
-                  animate={{ height: `${h}%` }}
-                  transition={{ duration: 0.7, delay: 0.15 + i * 0.05, ease: "easeOut" }}
-                  className="flex-1 rounded-sm bg-accent/70"
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2 text-[11px] text-muted">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-ok opacity-60" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-ok" />
-            </span>
-            Local AI Copilot — online, no cloud calls
-          </div>
+            );
+          })}
         </div>
       </div>
     </div>
