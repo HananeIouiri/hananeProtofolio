@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase, MapPin, Calendar } from "lucide-react";
+import { MapPin, Calendar } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { experiences } from "@/data/experience";
 
@@ -47,45 +47,14 @@ export function Experience() {
                 {exp.summary}
               </p>
 
-              {exp.businessSide && exp.technicalSide ? (
-                <div className="mt-6 grid sm:grid-cols-2 gap-6">
-                  <div>
-                    <p className="text-xs font-mono uppercase tracking-wide text-muted mb-3 flex items-center gap-1.5">
-                      <Briefcase size={12} /> Business & analysis
-                    </p>
-                    <ul className="space-y-2">
-                      {exp.businessSide.map((item) => (
-                        <li key={item} className="text-sm text-foreground/80 leading-snug flex gap-2.5">
-                          <span className="text-accent mt-1.5 h-1 w-1 rounded-full bg-accent shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="text-xs font-mono uppercase tracking-wide text-muted mb-3 flex items-center gap-1.5">
-                      <Briefcase size={12} /> Technical build
-                    </p>
-                    <ul className="space-y-2">
-                      {exp.technicalSide.map((item) => (
-                        <li key={item} className="text-sm text-foreground/80 leading-snug flex gap-2.5">
-                          <span className="text-accent mt-1.5 h-1 w-1 rounded-full bg-accent shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ) : (
-                <ul className="mt-6 space-y-2">
-                  {exp.responsibilities?.map((item) => (
-                    <li key={item} className="text-sm text-foreground/80 leading-snug flex gap-2.5">
-                      <span className="text-accent mt-1.5 h-1 w-1 rounded-full bg-accent shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <ul className="mt-6 space-y-2">
+                {exp.responsibilities.map((item) => (
+                  <li key={item} className="text-sm text-foreground/80 leading-snug flex gap-2.5">
+                    <span className="text-accent mt-1.5 h-1 w-1 rounded-full bg-accent shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
 
               <div className="mt-6 flex flex-wrap gap-2">
                 {exp.tech.map((t) => (

@@ -6,7 +6,7 @@ export const profile = {
   positioning:
     "I turn scattered operational data into decisions — designing ETL pipelines, data warehouses, Power BI dashboards, and local AI copilots that surface problems before they become incidents.",
   summary:
-    "Big Data & Cloud Computing engineering student (ENSET Mohammedia) currently completing a Data/BI Analyst mission at Scalian Maroc for client Alstom, on the CBTC signalling system of the Marseille metro.",
+    "Big Data & Cloud Computing engineering student (ENSET Mohammedia) currently completing a Data Engineer / Data Analyst internship at Scalian Morocco for client Alstom.",
   location: "Casablanca, Morocco",
   email: "hananeiouiri1@gmail.com",
   github: "https://github.com/HananeIouiri",

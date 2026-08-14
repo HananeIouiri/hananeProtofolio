@@ -16,7 +16,7 @@ export function Projects() {
         <SectionHeading
           eyebrow="Selected Work"
           title="Featured projects"
-          description="Chosen for technical depth and relevance to Data, AI, and BI — not a full repository dump. My final-year project has its own dedicated section below."
+          description="A selection of projects spanning Data Engineering, AI, and software development."
         />
 
         <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
